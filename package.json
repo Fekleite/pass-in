@@ -1,0 +1,12 @@
+{
+  "name": "nlw-unite-node",
+  "version": "1.0.0",
+  "description": "O pass.in é uma aplicação de gestão de participantes em eventos presenciais.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
