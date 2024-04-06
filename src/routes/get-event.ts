@@ -9,12 +9,14 @@ const getEventParamsSchema = z.object({
 })
 
 const getEventResponseSchema = z.object({
-  title: z.string(),
-  details: z.string().nullable(),
-  maximumAttendees: z.number().int().positive().nullable(),
-  slug: z.string(),
-  id: z.string().uuid(),
-  attendeesAmount: z.number().int().positive(),
+  event: z.object({
+    title: z.string(),
+    details: z.string().nullable(),
+    maximumAttendees: z.number().int().positive().nullable(),
+    slug: z.string(),
+    id: z.string().uuid(),
+    attendeesAmount: z.number().int().positive(),
+  }),
 })
 
 export async function getEvent(app: FastifyInstance) {
@@ -24,9 +26,7 @@ export async function getEvent(app: FastifyInstance) {
       schema: {
         params: getEventParamsSchema,
         response: {
-          200: {
-            event: getEventResponseSchema,
-          },
+          200: getEventResponseSchema,
         },
       },
     },
