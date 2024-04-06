@@ -13,6 +13,8 @@ export async function checkIn(app: FastifyInstance) {
     '/attendees/:attendeeId/check-in',
     {
       schema: {
+        summary: 'Check-in an attendee',
+        tags: ['check-ins'],
         params: checkInParamsSchema,
         response: {
           201: z.null(),

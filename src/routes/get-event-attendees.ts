@@ -30,6 +30,8 @@ export async function getEventAttendees(app: FastifyInstance) {
     '/events/:eventId/attendees',
     {
       schema: {
+        summary: 'Get event attendees',
+        tags: ['events'],
         params: getEventAttendeesParamsSchema,
         querystring: getEventAttendeesQuerySchema,
         response: {
