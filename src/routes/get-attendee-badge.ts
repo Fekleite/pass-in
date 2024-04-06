@@ -3,6 +3,7 @@ import z from 'zod'
 
 import { prisma } from '../lib/prisma'
 import { FastifyInstance } from 'fastify'
+import { BadRequest } from './_errors/bad-request'
 
 const getAttendeeBadgeParamsSchema = z.object({
   attendeeId: z.coerce.number().int(),
@@ -49,7 +50,7 @@ export async function getAttendeeBadge(app: FastifyInstance) {
       })
 
       if (attendee === null) {
-        throw new Error('Attendee not found.')
+        throw new BadRequest('Attendee not found.')
       }
 
       const baseURL = `${request.protocol}://${request.hostname}`

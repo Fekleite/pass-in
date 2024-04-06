@@ -3,6 +3,7 @@ import z from 'zod'
 
 import { prisma } from '../lib/prisma'
 import { FastifyInstance } from 'fastify'
+import { BadRequest } from './_errors/bad-request'
 
 const checkInParamsSchema = z.object({
   attendeeId: z.coerce.number().int(),
@@ -31,7 +32,7 @@ export async function checkIn(app: FastifyInstance) {
       })
 
       if (attendeeCheckIb !== null) {
-        throw new Error('Attendee already checked in!')
+        throw new BadRequest('Attendee already checked in!')
       }
 
       await prisma.checkIn.create({

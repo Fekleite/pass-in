@@ -3,6 +3,7 @@ import z from 'zod'
 
 import { prisma } from '../lib/prisma'
 import { FastifyInstance } from 'fastify'
+import { BadRequest } from './_errors/bad-request'
 
 const getEventParamsSchema = z.object({
   eventId: z.string().uuid(),
@@ -54,7 +55,7 @@ export async function getEvent(app: FastifyInstance) {
       })
 
       if (event === null) {
-        throw new Error('Event not found.')
+        throw new BadRequest('Event not found.')
       }
 
       return reply.send({
